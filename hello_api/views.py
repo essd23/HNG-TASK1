@@ -59,8 +59,8 @@ def get_weather(request):
 
 
 @api_view(['GET'])
-def hello(request):
-    name = request.GET.get('visitor_name', 'Mark')
+def hello_api(request):
+    visitor_name = request.GET.get('visitor_name', '')
     ip = client_ip(request)
     client_location = location(request)
     weather = get_weather(request)
@@ -68,7 +68,7 @@ def hello(request):
     api = {
             "client_ip": ip,
             "location": client_location,
-            "greeting": f'Hello, {name}!, the temperature is {weather} degrees celcius in {client_location}'
+            "greeting": f'Hello, {visitor_name}!, the temperature is {weather} degrees celcius in {client_location}'
 
            }
     return Response(api)
